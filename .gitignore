@@ -28,6 +28,3 @@ coverage/
 .idea/
 *.swp
 
-# Arquivos de lock (dependências)
-package-lock.json
-yarn.lock
