@@ -17,8 +17,6 @@ Thumbs.db
 # Arquivos de ambiente
 .env
 
-# Pastas do GitHub Actions
-.github/
 
 # Arquivos de cache
 .cache/
