@@ -1,0 +1,12 @@
+{
+  "name": "extensao_focus",
+  "version": "1.0.0",
+  "description": "Uma extensão para ajudar a manter o foco.",
+  "main": "src/js/popup.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

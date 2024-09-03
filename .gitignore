@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Diretórios de saída de build
+dist/
+build/
+
+# Pastas do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente
+.env
+
+# Pastas do GitHub Actions
+.github/
+
+# Arquivos de cache
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Arquivos temporários de editores de texto
+.vscode/
+.idea/
+*.swp
+
+# Arquivos de lock (dependências)
+package-lock.json
+yarn.lock
