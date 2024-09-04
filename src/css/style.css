@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 300px;
+    padding: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#timer {
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#blocked-sites {
+    margin-top: 20px;
+}
+
+
+input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 5px;
+}
