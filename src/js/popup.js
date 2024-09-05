@@ -1,72 +1,49 @@
-let timer;
-let isRunning = false;
-
-document.getElementById('startPomodoro').addEventListener('click', function() {
-  if (!isRunning) {
-    isRunning = true;
-    let timeLeft = 25 * 60; // 25 minutos
-
-    timer = setInterval(() => {
-      timeLeft--;
-      document.getElementById('timerDisplay').textContent = formatTime(timeLeft);
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        isRunning = false;
-        alert('Pomodoro terminado!');
-      }
-    }, 1000);
-  }
+// Verifica o estado inicial do modo escuro e ajusta o botão
+chrome.storage.sync.get('darkMode', function(result) {
+  const darkModeEnabled = result.darkMode || false;
+  updateDarkModeButton(darkModeEnabled);
 });
 
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secondsLeft = seconds % 60;
-  return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
+// Atualiza o botão com base no estado do modo escuro
+function updateDarkModeButton(isEnabled) {
+  const button = document.getElementById('toggleDarkMode');
+  if (isEnabled) {
+    button.textContent = 'Desativar Modo Escuro';
+  } else {
+    button.textContent = 'Ativar Modo Escuro';
+  }
 }
 
-// Adicionar site à lista de bloqueio
-document.getElementById('addSite').addEventListener('click', function() {
-  const site = document.getElementById('siteInput').value;
-  if (site) {
-    chrome.storage.sync.get(['blockedSites'], function(result) {
-      const sites = result.blockedSites || [];
-      sites.push(site);
-      chrome.storage.sync.set({ blockedSites: sites }, function() {
-        updateSiteList();
-        document.getElementById('siteInput').value = '';
-      });
-    });
-  }
-});
-
-function updateSiteList() {
-  chrome.storage.sync.get(['blockedSites'], function(result) {
-    const sites = result.blockedSites || [];
-    const siteList = document.getElementById('siteList');
-    siteList.innerHTML = '';
-    sites.forEach(site => {
-      const li = document.createElement('li');
-      li.textContent = site;
-      siteList.appendChild(li);
+// Ativa/Desativa o Modo Escuro
+document.getElementById('toggleDarkMode').addEventListener('click', function() {
+  chrome.storage.sync.get('darkMode', function(result) {
+    const darkModeEnabled = !result.darkMode; // Inverte o estado atual
+    chrome.storage.sync.set({ darkMode: darkModeEnabled }, function() {
+      updateDarkModeButton(darkModeEnabled);
+      applyDarkModeToCurrentTab(darkModeEnabled);
     });
   });
-}
+});
 
-updateSiteList();
-
-// Ativar/Desativar Modo Escuro
-document.getElementById('toggleDarkMode').addEventListener('click', function() {
+// Aplica o modo escuro na aba ativa
+function applyDarkModeToCurrentTab(enable) {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.scripting.executeScript({
       target: { tabId: tabs[0].id },
-      function: toggleDarkMode
+      func: setDarkMode,
+      args: [enable]
     });
   });
-});
+}
 
-function toggleDarkMode() {
+// Função que será executada na aba para aplicar o modo escuro
+function setDarkMode(enable) {
   const body = document.body;
-  body.style.backgroundColor = body.style.backgroundColor === 'black' ? '' : 'black';
-  body.style.color = body.style.color === 'white' ? '' : 'white';
+  if (enable) {
+    body.style.backgroundColor = 'black';
+    body.style.color = 'white';
+  } else {
+    body.style.backgroundColor = '';
+    body.style.color = '';
+  }
 }
