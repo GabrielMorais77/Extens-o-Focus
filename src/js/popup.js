@@ -1,45 +1,72 @@
-document.getElementById('start-pomodoro').addEventListener('click', () => {
-    chrome.alarms.create('pomodoro', { delayInMinutes: 25 });
-    chrome.notifications.create('pomodoro-start', {
-        type: 'basic',
-        iconUrl: 'icons/icon48.png',
-        title: 'Pomodoro Iniciado',
-        message: 'Foque nos seus estudos/trabalho por 25 minutos!'
-    });
+let timer;
+let isRunning = false;
+
+document.getElementById('startPomodoro').addEventListener('click', function() {
+  if (!isRunning) {
+    isRunning = true;
+    let timeLeft = 25 * 60; // 25 minutos
+
+    timer = setInterval(() => {
+      timeLeft--;
+      document.getElementById('timerDisplay').textContent = formatTime(timeLeft);
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        isRunning = false;
+        alert('Pomodoro terminado!');
+      }
+    }, 1000);
+  }
 });
 
-document.getElementById('stop-pomodoro').addEventListener('click', () => {
-    chrome.alarms.clear('pomodoro');
-    chrome.notifications.create('pomodoro-stop', {
-        type: 'basic',
-        iconUrl: 'icons/icon48.png',
-        title: 'Pomodoro Parado',
-        message: 'Você parou o temporizador.'
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secondsLeft = seconds % 60;
+  return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
+}
+
+// Adicionar site à lista de bloqueio
+document.getElementById('addSite').addEventListener('click', function() {
+  const site = document.getElementById('siteInput').value;
+  if (site) {
+    chrome.storage.sync.get(['blockedSites'], function(result) {
+      const sites = result.blockedSites || [];
+      sites.push(site);
+      chrome.storage.sync.set({ blockedSites: sites }, function() {
+        updateSiteList();
+        document.getElementById('siteInput').value = '';
+      });
     });
+  }
 });
 
-document.getElementById('add-site-button').addEventListener('click', () => {
-    const site = document.getElementById('add-site').value;
-    if (site) {
-        chrome.storage.sync.get({ blockedSites: [] }, (data) => {
-            const sites = data.blockedSites;
-            sites.push(site);
-            chrome.storage.sync.set({ blockedSites: sites });
-        });
-        document.getElementById('add-site').value = '';
-    }
-});
-
-document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
-            function: toggleDarkMode
-        });
+function updateSiteList() {
+  chrome.storage.sync.get(['blockedSites'], function(result) {
+    const sites = result.blockedSites || [];
+    const siteList = document.getElementById('siteList');
+    siteList.innerHTML = '';
+    sites.forEach(site => {
+      const li = document.createElement('li');
+      li.textContent = site;
+      siteList.appendChild(li);
     });
+  });
+}
+
+updateSiteList();
+
+// Ativar/Desativar Modo Escuro
+document.getElementById('toggleDarkMode').addEventListener('click', function() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      function: toggleDarkMode
+    });
+  });
 });
 
 function toggleDarkMode() {
-    document.body.style.backgroundColor = document.body.style.backgroundColor === 'black' ? 'white' : 'black';
-    document.body.style.color = document.body.style.color === 'white' ? 'black' : 'white';
+  const body = document.body;
+  body.style.backgroundColor = body.style.backgroundColor === 'black' ? '' : 'black';
+  body.style.color = body.style.color === 'white' ? '' : 'white';
 }
