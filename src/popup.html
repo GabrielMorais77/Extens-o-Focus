@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Bloqueador de Distrações</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Bloqueador de Distrações</title>
 </head>
 <body>
-    <h1>Bloqueador de Distrações</h1>
-    <button id="start-pomodoro">Iniciar Pomodoro</button>
-    <button id="stop-pomodoro">Parar Pomodoro</button>
-    <h3>Sites Bloqueados</h3>
-    <ul id="blocked-sites-list"></ul>
-    <input type="text" id="add-site" placeholder="Adicionar site">
-    <button id="add-site-button">Adicionar</button>
-    <button id="dark-mode-toggle">Ativar Modo Escuro</button>
-    <script src="js/popup.js"></script>
+  <h1>Bloqueador de Distrações</h1>
+  
+  <div id="pomodoro">
+    <h2>Pomodoro Timer</h2>
+    <div id="timerDisplay">25:00</div>
+    <button id="startPomodoro">Iniciar Pomodoro</button>
+  </div>
+
+  <div id="blocker">
+    <h2>Sites Bloqueados</h2>
+    <input type="text" id="siteInput" placeholder="Adicionar site">
+    <button id="addSite">Adicionar</button>
+    <ul id="siteList"></ul>
+  </div>
+
+  <div id="darkMode">
+    <h2>Modo Escuro</h2>
+    <button id="toggleDarkMode">Ativar/Desativar Modo Escuro</button>
+  </div>
+
+  <script src="js/popup.js"></script>
 </body>
 </html>
