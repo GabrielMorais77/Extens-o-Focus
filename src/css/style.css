@@ -4,26 +4,16 @@ body {
     padding: 10px;
   }
   
-  h1, h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
   button {
-    margin-top: 5px;
-    padding: 5px 10px;
-    font-size: 14px;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
     cursor: pointer;
-  }
-  
-  #timerDisplay {
-    font-size: 24px;
-    margin: 10px 0;
   }
   
   input {
     width: calc(100% - 20px);
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: 8px;
+    margin: 5px 0;
   }
   

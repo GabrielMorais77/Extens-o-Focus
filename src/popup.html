@@ -2,31 +2,25 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
   <title>Bloqueador de Distrações</title>
+  <link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
   <h1>Bloqueador de Distrações</h1>
   
-  <div id="pomodoro">
-    <h2>Pomodoro Timer</h2>
-    <div id="timerDisplay">25:00</div>
+  <!-- Temporizador Pomodoro -->
+  <div id="pomodoroTimer">
+    <p id="timer">25:00</p>
     <button id="startPomodoro">Iniciar Pomodoro</button>
+    <button id="resetPomodoro">Resetar</button>
   </div>
 
-  <div id="blocker">
-    <h2>Sites Bloqueados</h2>
-    <input type="text" id="siteInput" placeholder="Adicionar site">
-    <button id="addSite">Adicionar</button>
-    <ul id="siteList"></ul>
-  </div>
-
-  <div id="darkMode">
-    <h2>Modo Escuro</h2>
-    <button id="toggleDarkMode">Ativar/Desativar Modo Escuro</button>
-  </div>
-
+  <button id="toggleDarkMode">Ativar/Desativar Modo Escuro</button>
+  
+  <ul id="blockedSitesList"></ul>
+  <input type="text" id="siteInput" placeholder="Adicionar site para bloquear">
+  <button id="addSite">Adicionar Site</button>
+  
   <script src="js/popup.js"></script>
 </body>
 </html>
