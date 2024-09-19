@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "jest": "^29.0.0"
+  },
+  "dependencies": {
+    "darkreader": "^4.9.92"
   }
 }
