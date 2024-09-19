@@ -7,17 +7,17 @@
 </head>
 <body>
   <h1>Bloqueador de Distrações</h1>
-  
+  <hr class="separator">
+  <p id="darkModeTitle">Dark Mode</p>
   <!-- Modo Escuro -->
   <div id="darkModeControls">
-    <h2>Dark Mode</h2>
     <button id="activateDarkMode">Ativar Modo Escuro</button>
     <button id="deactivateDarkMode">Desativar Modo Escuro</button>
   </div>
 
   <!-- Temporizador Pomodoro -->
   <div id="pomodoroTimer">
-    <p id="timer">25:00</p>
+    <p id="timer">60:00</p>
     <button id="startPomodoro">Iniciar Pomodoro</button>
     <button id="resetPomodoro">Resetar</button>
   </div>
@@ -25,6 +25,7 @@
   <ul id="blockedSitesList"></ul>
   <input type="text" id="siteInput" placeholder="Adicionar site para bloquear">
   <button id="addSite">Adicionar Site</button>
+  <button id="clearSites">Limpar Lista de Sites</button>
   
   <script src="js/popup.js"></script>
 </body>

@@ -1,0 +1,85 @@
+/* Estilização geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+  /* Estilização do título principal */
+    h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+  /* Linha separadora entre o título e a seção de Dark Mode */
+    .separator {
+    border: none;
+    height: 1px;
+    background-color: #333;
+    width: 100%;
+    margin: 10px 0;
+}
+
+  /* Estilização para o texto "Dark Mode" */
+    #darkModeTitle {
+    font-size: 16px;
+    font-style: italic;
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+  /* Estilização dos botões */
+    button {
+    display: block; /* Alinha cada botão no centro do container */
+    margin: 10px auto; /* Centraliza cada botão */
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  /* Mudança de cor dos botões ao passar o mouse */
+    button:hover {
+    background-color: #555;
+}
+
+
+  /* Campo de entrada e botões */
+    input[type="text"], #startPomodoro, #resetPomodoro, #addSite {
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #f3eeee;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Bordas arredondadas */
+    text-align: center;
+    display: block;
+    width: 80%;
+}
+  /* Estilização da lista de sites bloqueados */
+    #blockedSitesList {
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+}
+    #blockedSitesList li {
+    background-color: #e0e0e0;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 10px;
+    text-align: center;
+}
+  /* Estilo do temporizador Pomodoro */
+    #timer {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+}
