@@ -1,0 +1,24 @@
+/* dark-mode.css */
+body {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+a {
+    color: #1e90ff !important;
+}
+
+button {
+    background-color: #555 !important;
+    color: #fff !important;
+}
+
+input, textarea {
+    background-color: #444 !important;
+    color: #fff !important;
+}
+
+h1 {
+    color: #fff !important;
+}
+
